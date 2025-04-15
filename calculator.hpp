@@ -4,9 +4,9 @@
 #include <string>
 #include <vector>
 
-bool isValidDouble(const std::string& s);
+bool validDouble(const std::string& s);
 std::string addStrings(const std::string& a, const std::string& b);
-std::vector<std::string> loadFileLines(const std::string& filename);
+std::vector<std::string> loadLines(const std::string& filename);
 // this function should expect that `expression` has already been
 // validated and thus throw no exceptions
 double parse_number(const std::string &expression);

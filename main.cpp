@@ -6,15 +6,15 @@ int main() {
     std::cout << "Enter the name of the input file: ";
     std::cin >> filename;
 
-    std::vector<std::string> lines = loadFileLines(filename);
+    std::vector<std::string> lines = loadLines(filename);
     std::string constant = "-123.456";
 
     for (const std::string &line : lines) {
-        if (isValidDouble(line)) {
+        if (validDouble(line)) {
             std::string sum = addStrings(line, constant);
             std::cout << line << " + " << constant << " = " << sum << std::endl;
         } else {
-            std::cout << line << " is not a valid double" << std::endl;
+            std::cout << line << " not valid double" << std::endl;
         }
     }
 

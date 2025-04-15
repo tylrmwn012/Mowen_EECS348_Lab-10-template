@@ -4,12 +4,11 @@
 #include <sstream>
 #include <cctype>
 
-// Function to check if a string is a valid double
-bool isValidDouble(const std::string& s) {
+// verify that the string is a valid double
+bool validDouble(const std::string& s) {
     bool hasDecimalPoint = false;
     size_t start = 0;
 
-    // Check for optional '+' or '-' sign at the beginning
     if (s[0] == '+' || s[0] == '-') {
         start = 1;
     }
@@ -21,24 +20,19 @@ bool isValidDouble(const std::string& s) {
         } else if (s[i] == '.' && !hasDecimalPoint) {
             hasDecimalPoint = true;
         } else {
-            return false;  // Invalid character encountered
+            return false;  
         }
     }
 
-    // A valid double must have at least one digit and if it has a decimal, it must have digits after it
     return hasDigit && (hasDecimalPoint ? s.find('.') < s.length() - 1 : true);
 }
 
-// Function to add two string-represented numbers (assumes valid double strings)
+// add string-represented numbers if valid
 std::string addStrings(const std::string& a, const std::string& b) {
-    // Simple algorithm to add two string numbers (without converting to double)
-    // We will do this by aligning decimal points and adding digit by digit
 
-    // Handle the sign and integer/decimal parts separately
     bool isNegative = false;
     std::string result;
 
-    // Add both numbers digit by digit (starting from the right)
     size_t maxLength = std::max(a.length(), b.length());
     int carry = 0;
     for (int i = maxLength - 1; i >= 0; --i) {
@@ -50,7 +44,6 @@ std::string addStrings(const std::string& a, const std::string& b) {
         result.insert(result.begin(), (sum % 10) + '0');
     }
 
-    // Handle the case where the sum has a carry left
     if (carry > 0) {
         result.insert(result.begin(), carry + '0');
     }
@@ -58,8 +51,8 @@ std::string addStrings(const std::string& a, const std::string& b) {
     return result;
 }
 
-// Function to load file lines into a vector of strings
-std::vector<std::string> loadFileLines(const std::string& filename) {
+// load file lines into vector of strings
+std::vector<std::string> loadLines(const std::string& filename) {
     std::vector<std::string> lines;
     std::ifstream file(filename);
 
@@ -76,7 +69,6 @@ std::vector<std::string> loadFileLines(const std::string& filename) {
     return lines;
 }
 
-// Function to parse a number string into a double (for further validation or usage)
 double parse_number(const std::string &expression) {
     return std::stod(expression);
 }
